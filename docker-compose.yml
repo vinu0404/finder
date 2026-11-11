@@ -1,0 +1,6 @@
+services:
+  web:
+    build: .
+    ports: ["3005:3000"]
+    env_file: .env
+    volumes: [".:/app", "/app/node_modules", "/app/.next"]
