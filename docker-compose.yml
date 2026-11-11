@@ -3,4 +3,7 @@ services:
     build: .
     ports: ["3005:3000"]
     env_file: .env
+    environment:
+      # Docker Desktop NAT is slow to connect; Node's default 250ms per-address timeout makes some APIs time out
+      NODE_OPTIONS: --network-family-autoselection-attempt-timeout=3000
     volumes: [".:/app", "/app/node_modules", "/app/.next"]
