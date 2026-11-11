@@ -21,7 +21,7 @@ export default async function Page({ searchParams }) {
             <a href={j.link} target="_blank" rel="noreferrer" style={{ fontWeight: 600 }}>{j.title}</a>
             <b style={{ color: j.score >= 70 ? 'green' : j.score >= 50 ? 'darkorange' : 'gray' }}>{j.score}/100</b>
           </div>
-          <div style={{ fontSize: 14, color: '#555' }}>{j.company} · {j.location} · exp: {j.experience} · {j.posted ? `posted ${new Date(j.posted).toLocaleDateString('en-IN')}` : `found ${new Date(j.found_at).toLocaleDateString('en-IN')}`}</div>
+          <div style={{ fontSize: 14, color: '#555' }}>{j.company} · {j.location} · exp: {j.experience} · pay: {j.salary || 'not stated'} · {j.posted ? `posted ${new Date(j.posted).toLocaleDateString('en-IN')}` : `found ${new Date(j.found_at).toLocaleDateString('en-IN')}`}</div>
           <div style={{ fontSize: 14, marginTop: 4 }}>{j.reason}</div>
           {j.missing && <div style={{ fontSize: 13, color: '#a33' }}>Missing: {j.missing}</div>}
         </div>
