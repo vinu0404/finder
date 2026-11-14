@@ -9,7 +9,9 @@ const ago = iso => {
 const scoreColor = s => (s >= 70 ? 'var(--good)' : s >= 50 ? 'var(--warn)' : 'var(--muted)')
 const cleanTitle = t => (t || '').replace(/^Job Application for /, '').replace(/ - (LinkedIn|Careernet)$/, '')
 
-export default function Dashboard({ jobs: initial }) {
+const when = iso => new Date(iso).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' })
+
+export default function Dashboard({ jobs: initial, lastRunAt }) {
   const [jobs, setJobs] = useState(initial)
   const [tab, setTab] = useState('matches')
   const [q, setQ] = useState('')
@@ -80,7 +82,7 @@ export default function Dashboard({ jobs: initial }) {
         <div className="stat"><b>{groups.matches.length}</b><span>Open matches</span></div>
         <div className="stat"><b>{newToday}</b><span>New in last 24h</span></div>
         <div className="stat"><b>{groups.applied.length}</b><span>Applied</span></div>
-        <div className="stat"><b>{lastRun ? ago(lastRun) : '—'}</b><span>Last new job found</span></div>
+        <div className="stat"><b>{lastRunAt ? when(lastRunAt) : '—'}</b><span>Last run{lastRun ? ` · new job ${ago(lastRun)}` : ''}</span></div>
       </section>
 
       <div className="bar">
